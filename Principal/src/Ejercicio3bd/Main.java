@@ -4,27 +4,25 @@ import java.io.*;
 
 public class Main {
 
-    static RandomAccessFile archivo = null;
+    static RandomAccessFile metadatosFile = null;
+    static RandomAccessFile datosFile = null;
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileOutputStream fos = null;
         try {
             //crea el archivo:
-            archivo = new RandomAccessFile("metadatos.bin", "rw");
-            if (archivo.length() == 0) {
-                Funciones.crearVacio(archivo);
-                System.out.println("Archivo creado!!!");
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-        try {
-            if (fos != null) {
-                fos.close();
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            metadatosFile = new RandomAccessFile("metadatos.bin", "rw");
+            datosFile = new RandomAccessFile("datos.bin", "rw");
+            Metadata.crearMetadata();
 
+
+            System.out.println("Archivo creado!!!");
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
+
+
+
+}

@@ -1,15 +1,4 @@
 package Ejercicio3bd;
 
-import java.util.Scanner;
-
-public class Registro {
-
-
-
-
-    public Registro() {
-
-
-    }
-
+public record Registro(String campo,int tamanio) {
 }

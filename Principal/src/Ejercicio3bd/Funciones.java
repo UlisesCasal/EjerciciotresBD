@@ -1,5 +1,7 @@
 package Ejercicio3bd;
 
+import java.io.IOException;
+
 public class Funciones {
 
     public static String cambiarTamanioString(String cadena,int tamanio) {
@@ -19,4 +21,11 @@ public class Funciones {
             return false;
         }
     }
+
+    public static void clear() throws IOException {
+        for (int i = 0; i < 20; i++) {
+            System.out.println();
+        }
+    }
+
 }

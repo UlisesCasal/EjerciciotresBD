@@ -16,7 +16,7 @@ public class Metadata {
     }
 
     public static int getCantidadRegistros(RandomAccessFile archivo) throws IOException {
-        return Math.toIntExact((archivo.length() / TAMANIOREGISTRO));
+        return Math.toIntExact(((archivo.length()) / TAMANIOREGISTRO));
     }
 
     public static int getTamanioMetadataEnBytes(RandomAccessFile archivo) throws IOException {
@@ -43,7 +43,7 @@ public class Metadata {
 
 
 
-    public static void crearMetadata() throws IOException {
+    public static void crearMetadata(RandomAccessFile metadata) throws IOException {
 
         String nombreCampo = "holas";
 
@@ -60,7 +60,8 @@ public class Metadata {
 
 
             //Verifica que el nombre tenga entre 1 y 10 caracteres
-            while ((nombreCampo.length() > 10) || (nombreCampo.length() < 1)) {
+            while ((nombreCampo.length() > 10) || (nombreCampo.trim().length() < 1)) {
+                Funciones.clear();
                 System.out.println("Nombre invalido, debe tener entre 1 y 10 caracteres");
                 System.out.println("Ingrese el nombre del campo (Solo puede ser de 10 caracteres): ");
                 nombreCampo = sc.nextLine();
@@ -78,6 +79,7 @@ public class Metadata {
                 }
 
                 while ((tamanioDeCampo < 1) || (tamanioDeCampo > 10)) {
+                    Funciones.clear();
                     System.out.println("Dato invalido, el tamanio debe ser un numero entre 1 y 10");
                     System.out.println("Ingrese el tamanio del campo:");
                     num = sc.nextLine();
@@ -89,9 +91,10 @@ public class Metadata {
                 }
 
                 //Una vez los datos verificados los escribo en el archivo de metadatos:
-                escribirMetadato(nombreCampo, tamanioDeCampo, Main.metadatosFile);
+                escribirMetadato(nombreCampo, tamanioDeCampo, metadata);
                 cantidadCampos++;
             }
+
             Funciones.clear();
         }
     }

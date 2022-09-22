@@ -88,8 +88,10 @@ public class ManejarDatos {
 
         int cantidadDeRegistrosDeDatos = (int) (datos.length() / tamanioDatoEnBytes);
 
+        System.out.println(Metadata.stringMetadatos(metadato));
+
         for (int i = 0; i < cantidadDeRegistrosDeDatos; i++) {
-            System.out.println(Arrays.toString(leer(datos,metadato,i)));
+            System.out.println("[" + i + "] " + Arrays.toString(leer(datos,metadato,i)));
         }
         System.out.println("Presione ENTER para continuar.");
         Scanner sc = new Scanner(System.in);

@@ -41,6 +41,23 @@ public class Metadata {
         return new Registro(campo,size);
     }
 
+    public static String stringMetadatos(RandomAccessFile archivo) throws IOException {
+        String resultado = "    ";
+
+        archivo.seek(0);
+        int max = getCantidadRegistros(archivo);
+
+        for (int i = 0; i < max; i++) {
+            Registro rg = new Registro(archivo.readUTF(),archivo.readInt());
+            resultado += rg.campo();
+            if (i < max-1) resultado += " ";
+            else resultado += "\n";
+        }
+
+        return resultado;
+
+    }
+
 
 
     public static void crearMetadata(RandomAccessFile metadata) throws IOException {
